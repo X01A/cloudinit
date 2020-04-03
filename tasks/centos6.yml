@@ -1,10 +1,10 @@
 ---
-- name: Install centos-release-scl
+- name: Install centos-release-scl # noqa 403
   yum:
     name: centos-release-scl
     state: latest
 
-- name: Install scl python3
+- name: Install scl python3 # noqa 403
   yum:
     name: rh-python36
     state: latest

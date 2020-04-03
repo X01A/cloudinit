@@ -1,5 +1,5 @@
 ---
-- name: Install cloud-init and growpart (CentOS == 8)
+- name: Install cloud-init and growpart (CentOS == 8) # noqa 403
   when: ansible_distribution_major_version == '8'
   dnf:
     update_cache: yes
@@ -8,7 +8,7 @@
     - cloud-utils-growpart
     state: latest
 
-- name: Install cloud-init and growpart (CentOS == 7)
+- name: Install cloud-init and growpart (CentOS == 7) # noqa 403
   when: ansible_distribution_major_version == '7'
   yum:
     update_cache: yes
@@ -17,7 +17,7 @@
     - cloud-utils-growpart
     state: latest
 
-- name: Install growpart (CentOS == 6)
+- name: Install growpart (CentOS == 6) # noqa 403
   when: ansible_distribution_major_version == '6'
   yum:
     name: cloud-utils-growpart
