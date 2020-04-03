@@ -1,0 +1,71 @@
+---
+- name: Install centos-release-scl
+  yum:
+    name: centos-release-scl
+    state: latest
+
+- name: Install scl python3
+  yum:
+    name: rh-python36
+    state: latest
+    update_cache: yes
+
+- name: Download cloud-init tarball
+  get_url:
+    url: https://launchpad.net/cloud-init/trunk/{{ cloud_init_version }}/+download/cloud-init-{{ cloud_init_version }}.tar.gz
+    dest: /usr/local/src/cloudinit.tgz
+
+- name: Unarchive cloud-init
+  unarchive:
+    src: /usr/local/src/cloudinit.tgz
+    dest: /usr/local/src/
+
+- name: Delete cloud-init tarball
+  file:
+    path: /usr/local/src/cloudinit.tgz
+    state: absent
+
+- name: Set python dir
+  set_fact:
+    python_bin_dir: /opt/rh/rh-python36/root/usr/bin
+    cloud_init_dir: /usr/local/src/cloud-init-{{ cloud_init_version }}
+
+- name: Install cloud-init requirements # noqa 305 301
+  shell:
+    cmd: "{{ python_bin_dir }}/pip install -r requirements.txt"
+    chdir: "{{ cloud_init_dir }}"
+
+- name: Build cloud-init # noqa 305 301
+  shell:
+    cmd: "{{ python_bin_dir }}/python setup.py build"
+    chdir: "{{ cloud_init_dir }}"
+
+- name: Install cloud-init # noqa 305 301
+  shell:
+    cmd: "{{ python_bin_dir }}/python setup.py install --init-system sysvinit"
+    chdir: "{{ cloud_init_dir }}"
+
+- name: Delete cloud-init src dir
+  file:
+    path: "{{ cloud_init_dir }}"
+    state: absent
+
+- name: Link cloud-init file
+  file:
+    src: "{{ python_bin_dir }}/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    state: link
+  with_items:
+  - cloud-id
+  - cloud-init
+  - cloud-init-per
+
+- name: Enable cloud-init service (sysvinit)
+  sysvinit:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - cloud-config
+    - cloud-final
+    - cloud-init
+    - cloud-init-local

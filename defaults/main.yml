@@ -1,0 +1,5 @@
+---
+# Only for centos 6 build form source
+cloud_init_version: '20.1'
+
+cloud_init_growpart_enable_lvm: yes

@@ -1,0 +1,21 @@
+galaxy_info:
+  author: Indexyz
+  description: Install cloud-init, for cloud provisioning
+  company: X01A
+
+  license: MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: EL
+      versions:
+        - 8
+        - 7
+        - 6
+
+  galaxy_tags:
+  - cloud
+  - clout-init
+
+  dependencies: []

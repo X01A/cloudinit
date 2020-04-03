@@ -1,0 +1,10 @@
+---
+- include: dependencies/{{ ansible_distribution | lower | replace(' ', '') }}.yml
+  tags:
+    - install
+    - deps
+
+- name: Copy cloud.cfg
+  copy:
+    src: cloud.cfg
+    dest: /etc/cloud/cloud.cfg

@@ -1,0 +1,10 @@
+---
+- name: Enable cloud-init service (systemd)
+  systemd:
+    enabled: yes
+    name: "{{ item }}"
+  with_items:
+    - cloud-config
+    - cloud-final
+    - cloud-init
+    - cloud-init-local
