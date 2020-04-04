@@ -17,13 +17,6 @@
     - cloud-utils-growpart
     state: latest
 
-- name: Install growpart (CentOS == 6) # noqa 403
-  when: ansible_distribution_major_version == '6'
-  yum:
-    name: cloud-utils-growpart
-    state: latest
-    update_cache: yes
-
 - name: Build cloud-init from source (CentOS == 6)
   when: ansible_distribution_major_version == '6'
   include: ../centos6.yml

@@ -1,4 +1,16 @@
 ---
+- name: Install epel # noqa 403
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+    state: latest
+    update_cache: yes
+
+- name: Install growpart # noqa 403
+  yum:
+    name: cloud-utils-growpart
+    state: latest
+    update_cache: yes
+
 - name: Install centos-release-scl # noqa 403
   yum:
     name: centos-release-scl
@@ -17,6 +29,7 @@
 
 - name: Unarchive cloud-init
   unarchive:
+    remote_src: yes
     src: /usr/local/src/cloudinit.tgz
     dest: /usr/local/src/
 
