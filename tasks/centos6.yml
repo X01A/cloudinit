@@ -85,4 +85,4 @@
 
 - name: Set special config
   set_fact:
-    cloud_init_lvm_part_type: ext4
+    cloud_init_growpart_enable_lvm: no

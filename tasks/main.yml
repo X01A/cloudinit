@@ -8,3 +8,8 @@
   template:
     src: cloud.cfg
     dest: /etc/cloud/cloud.cfg
+
+- name: Clean up cloud-init dir
+  file:
+    state: absent
+    path: /var/lib/cloud/
