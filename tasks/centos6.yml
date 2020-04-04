@@ -29,6 +29,7 @@
 
 - name: Unarchive cloud-init
   unarchive:
+    remote_src: yes
     src: /usr/local/src/cloudinit.tgz
     dest: /usr/local/src/
 
