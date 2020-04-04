@@ -1,14 +1,11 @@
 ---
 - name: Install epel # noqa 403
-  when: ansible_distribution_major_version == '6'
   yum:
-    name: epel-releases
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
     state: latest
     update_cache: yes
 
-
 - name: Install growpart # noqa 403
-  when: ansible_distribution_major_version == '6'
   yum:
     name: cloud-utils-growpart
     state: latest
