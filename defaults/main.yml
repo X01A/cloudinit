@@ -3,3 +3,5 @@
 cloud_init_version: '20.1'
 
 cloud_init_growpart_enable_lvm: yes
+
+cloud_init_lvm_part_type: xfs

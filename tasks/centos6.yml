@@ -69,3 +69,7 @@
     - cloud-final
     - cloud-init
     - cloud-init-local
+
+- name: Set special config
+  set_fact:
+    cloud_init_lvm_part_type: ext4
