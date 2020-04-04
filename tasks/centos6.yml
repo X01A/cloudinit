@@ -1,4 +1,19 @@
 ---
+- name: Install epel # noqa 403
+  when: ansible_distribution_major_version == '6'
+  yum:
+    name: epel-releases
+    state: latest
+    update_cache: yes
+
+
+- name: Install growpart # noqa 403
+  when: ansible_distribution_major_version == '6'
+  yum:
+    name: cloud-utils-growpart
+    state: latest
+    update_cache: yes
+
 - name: Install centos-release-scl # noqa 403
   yum:
     name: centos-release-scl
