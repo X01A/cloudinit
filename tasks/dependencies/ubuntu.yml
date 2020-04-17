@@ -1,9 +1,10 @@
 ---
 - name: Install ubuntu packages
   apt:
-    names:
+    pkg:
     - cloud-init
     - cloud-guest-utils
+    update_cache: yes
 
 - name: Enable service (Ubuntu)
   include: ../systemd.yml
