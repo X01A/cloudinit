@@ -1,0 +1,15 @@
+---
+- name: Install ubuntu packages
+  apt:
+    names:
+    - cloud-init
+    - cloud-guest-utils
+
+- name: Enable service (Ubuntu)
+  include: ../systemd.yml
+
+- name: Set system details
+  set_fact:
+    cloud_init_lvm_part_type: ext4
+    cloud_init_growpart_enable_lvm: yes
+    cloud_init_growpart_devices: /dev/sda1
