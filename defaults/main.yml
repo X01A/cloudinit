@@ -1,8 +1,3 @@
 ---
 # Only for centos 6 build form source
 cloud_init_version: '20.1'
-
-cloud_init_growpart_enable_lvm: yes
-cloud_init_growpart_devices: /dev/sda2
-
-cloud_init_lvm_part_type: xfs
