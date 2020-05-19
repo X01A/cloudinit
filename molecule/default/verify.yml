@@ -1,0 +1,10 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Check cloud-init status
+    command: cloud-init status
+    register: command_result
+    failed_when: "command_result.stdout != 'status: not run'" # Implies a fresh install
+  - debug: var=command_result
