@@ -8,8 +8,8 @@ provisioner:
 verifier:
   name: ansible
 lint: |
-  ansible-lint
   yamllint .
+  ansible-lint
 platforms:
   - name: centos8
     image: centos:8
