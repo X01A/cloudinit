@@ -6,7 +6,7 @@
 
 - name: Copy cloud.cfg
   template:
-    src: "{{ ansible_distribution | lower | replace(' ', '') }}.cfg"
+    src: "{{ cloud_cfg }}"
     dest: /etc/cloud/cloud.cfg
 
 - name: Clean up cloud-init dir

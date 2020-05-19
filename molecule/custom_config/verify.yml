@@ -1,0 +1,16 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Check cloud-init status
+    command: cloud-init status
+    register: command_result
+    changed_when: false
+    failed_when: "command_result.stdout != 'status: not run'" # Implies a fresh install
+  - name: Check config file sha
+    stat: 
+      path: /etc/cloud/cloud.cfg
+      checksum_algorithm: sha1
+    register: stat
+    failed_when: "stat.stat.checksum != '3b53e8061f3ca95264eb2b81a263ebe43ee3ee8a'"
