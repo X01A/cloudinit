@@ -1,0 +1,35 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+lint: |
+  yamllint .
+  ansible-lint
+platforms:
+  - name: centos8
+    image: centos:8
+    pre_build_image: true
+  - name: centos7
+    image: centos:7
+    pre_build_image: true
+  # centos6 does not work with docker: https://github.com/CentOS/sig-cloud-instance-images/issues/103
+  - name: ubuntu2010
+    image: ubuntu:20.10
+    pre_build_image: true
+  - name: ubuntu2004
+    image: ubuntu:20.04
+    pre_build_image: true
+  - name: ubuntu1910
+    image: ubuntu:19.10
+    pre_build_image: true
+  - name: ubuntu1804
+    image: ubuntu:18.04
+    pre_build_image: true
+  - name: ubuntu1604
+    image: ubuntu:16.04
+    pre_build_image: true

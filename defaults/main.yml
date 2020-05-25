@@ -1,3 +1,4 @@
 ---
 # Only for centos 6 build form source
 cloud_init_version: '20.1'
+cloud_cfg: "{{ ansible_distribution | lower | replace(' ', '') }}.cfg"
